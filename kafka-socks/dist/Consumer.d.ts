@@ -13,10 +13,27 @@ export declare class Consumer {
     pause: boolean;
     resume: boolean;
     isConsuming: boolean;
+    /**
+     * Constructs the Kafka Socks consumer object, which wraps around a KafkaJS consumer object,
+     * and associates the consumer object with a particular websocket event
+     * @param consumer a Kafka Socks consumer
+     * @param topic the topic to associate with the Kafka Socks consumer
+     * @param event the websocket event ID
+     */
     constructor(consumer: ConsumerInterface, topic: string, event: string, pause?: boolean, resume?: boolean, isConsuming?: boolean);
+    /**
+     * pauses the consumption of the KafkaSocks consumer
+     */
     pauser(): void;
+    /**
+     * Resumes a paused KafkaSocks consumer
+     * @param namespace not used
+     */
     resumer(namespace: any): void;
-    runAfterResume(namespace: any): Promise<void>;
+    /**
+     * Starts the KakfaJS consumers wrapped by the Kafka Socks consumer class
+     * @param namespace a socket.io namespace
+     */
     run(namespace: any): Promise<void>;
 }
 export default Consumer;
